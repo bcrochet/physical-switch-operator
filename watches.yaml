@@ -1,0 +1,5 @@
+---
+- version: v1alpha1
+  group: metal3.io
+  kind: Switch
+  playbook: /opt/ansible/playbook.yml

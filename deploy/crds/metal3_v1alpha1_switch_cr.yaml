@@ -1,0 +1,7 @@
+apiVersion: metal3.io/v1alpha1
+kind: Switch
+metadata:
+  name: example-switch
+spec:
+  # Add fields here
+  size: 3
