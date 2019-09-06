@@ -1,5 +1,24 @@
 - hosts: localhost
   gather_facts: no
   tasks:
+  - name: Get secret
+    k8s_facts:
+      api_version: v1
+      kind: Secret
+      name: '{{ credentials_name }}'
+      namespace: '{{ meta.namespace }}'
+    register: secret
+  - name: Add switch to group 'switch'
+    add_host:
+      name: '{{ meta.name }}'
+      groups: switch
+      ansible_ssh_host: '{{ ip_address }}'
+      ansible_ssh_port: '{{ port }}'
+      ansible_user: '{{ secret.resources[0].data.username | b64decode }}'
+      ansible_password: '{{ secret.resources[0].data.password | b64decode }}'
+
+- hosts: switch
+  gather_facts: no
+  tasks:
   - import_role:
       name: "switch"
