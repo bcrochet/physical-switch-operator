@@ -16,9 +16,18 @@
       ansible_ssh_port: '{{ port }}'
       ansible_user: '{{ secret.resources[0].data.username | b64decode }}'
       ansible_password: '{{ secret.resources[0].data.password | b64decode }}'
+      ansible_network_os: '{{ network_os }}'
 
 - hosts: switch
   gather_facts: no
   tasks:
-  - import_role:
-      name: "switch"
+  - include_role:
+      name: network-runner
+      tasks_from: create_vlan
+    vars:
+      - vlan_id: "{{ vlan_input.id }}"
+      - vlan_name: "{{ vlan_input.name }}"
+    with_items: "{{ vlans }}"
+    loop_control:
+      loop_var: vlan_input
+    when: vlans is defined

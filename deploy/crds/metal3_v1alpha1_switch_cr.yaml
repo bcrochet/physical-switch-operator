@@ -14,9 +14,10 @@ kind: Switch
 metadata:
   name: example-switch
 spec:
-  ipAddress: 10.13.57.54
-  port: 1401
+  ipAddress: 192.168.122.19
+  port: 22
   credentialsName: my-switch-secret
+  networkOS: cumulus
   vlans:
     - id: 10
       name: test-vlan

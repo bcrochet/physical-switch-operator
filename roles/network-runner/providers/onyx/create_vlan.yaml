@@ -1,0 +1,5 @@
+---
+- name: "onyx: create vlan"
+  onyx_vlan:
+    vlan_id: "{{ _vlan_id }}"
+    name: "{{ _vlan_name }}"
