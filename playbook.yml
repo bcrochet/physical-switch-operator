@@ -31,3 +31,18 @@
     loop_control:
       loop_var: vlan_input
     when: vlans is defined
+
+- hosts: localhost
+  tasks:
+  - name: Update the standard condition of an Ansible Operator
+    k8s_status:
+      api_version: metal3.io/v1alpha1
+      kind: Switch
+      name: "{{ meta.name }}"
+      namespace: "{{ meta.namespace }}"
+      conditions:
+      - type: Running
+        status: "False"
+        reason: Running
+        message: "Running reconciliation"
+        lastTransitionTime: "{{ ansible_date_time.iso8601 }}"

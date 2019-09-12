@@ -45,7 +45,6 @@ spec:
               format: int32
               maximum: 65535
               minimum: 1
-              default: 22
             networkOS:
               description: The type of OS this switch runs Currently supported
                 cumulus, dellos10, eos, junos, nxos, openvswitch
@@ -72,6 +71,7 @@ spec:
               type: array
           required:
           - ipAddress
+          - port
           - credentialsName
           - networkOS
           type: object
