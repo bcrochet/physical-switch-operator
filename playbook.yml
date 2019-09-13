@@ -46,3 +46,5 @@
         reason: Running
         message: "Running reconciliation"
         lastTransitionTime: "{{ ansible_date_time.iso8601 }}"
+      status:
+        vlans: "{{ vlans | default([]) }}"

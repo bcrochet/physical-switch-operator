@@ -1,0 +1,20 @@
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: my-switch-secret
+type: Opaque
+data:
+  username: Y3VtdWx1cw==
+  password: Q3VtdWx1c0xpbnV4IQ==
+
+---
+apiVersion: metal3.io/v1alpha1
+kind: Switch
+metadata:
+  name: example-switch
+spec:
+  ipAddress: 192.168.122.19
+  port: 22
+  credentialsName: my-switch-secret
+  networkOS: cumulus
