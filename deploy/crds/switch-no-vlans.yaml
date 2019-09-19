@@ -9,12 +9,22 @@ data:
   password: Q3VtdWx1c0xpbnV4IQ==
 
 ---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: my-eos-secret
+type: Opaque
+data:
+  username: cHNv
+  password: bXlzZWNyZXQ=
+
+---
 apiVersion: metal3.io/v1alpha1
 kind: Switch
 metadata:
   name: example-switch
 spec:
-  ipAddress: 192.168.122.19
+  ipAddress: 192.168.122.181
   port: 22
-  credentialsName: my-switch-secret
-  networkOS: cumulus
+  credentialsName: my-eos-secret
+  networkOS: eos
